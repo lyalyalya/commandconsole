@@ -1,12 +1,13 @@
 package com.command.console.impl;
 
+import com.github.stefanbirkner.systemlambda.SystemLambda;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -30,11 +31,10 @@ class ExitCommandTest {
         assertEquals(EXPECTED_ERROR_MSG, actualException.getMessage());
     }
 
-    /*@Test
+    @Test
+    @SneakyThrows
     public void shouldSuccessfulExit() {
-        Executable call = () -> exitCommand.execute(Collections.emptyList());
-
-        assertDoesNotThrow(call);
-    }*/
+        SystemLambda.catchSystemExit(() -> exitCommand.execute(Collections.emptyList()));
+    }
 
 }

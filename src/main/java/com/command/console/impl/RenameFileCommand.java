@@ -25,15 +25,14 @@ public class RenameFileCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) {
+    protected void executeCommand(List<String> args) throws IOException {
         Path source = Paths.get(args.get(0));
-        if (!Files.exists(source)) throw new IllegalArgumentException("File doesn't exist");
-        try {
-            Files.move(source, source.resolveSibling(args.get(1)));
-            System.out.println("Lucky boy! successful;))");
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Unsuccessful\n\n" + getDescription());
+        if (!Files.exists(source)) {
+            throw new IllegalArgumentException("File doesn't exist");
         }
+        Files.move(source, source.resolveSibling(args.get(1)));
+        System.out.println("Lucky boy! successful;))");
+
     }
 
     /**

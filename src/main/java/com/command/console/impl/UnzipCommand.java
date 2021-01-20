@@ -1,3 +1,7 @@
+package com.command.console.impl;
+
+import com.command.console.AbstractCommand;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,27 +12,36 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class UnzipCommand implements Command {
+/**
+ * Command for unzipping archive.
+ */
+public class UnzipCommand extends AbstractCommand {
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public String getDescription() {
-        return "Unzipping a file/directory.\nSYNOPSIS\nunzip[source name] - unzip archive\n";
+    protected boolean isInvalidArgs(List<String> args) {
+        return args.size() != 1;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public void execute(List<String> args) {
-        if (args.size() != 1) {
-            throw new IllegalArgumentException("Illegal arguments");
-        }
+    protected void executeCommand(List<String> args) throws IOException {
         if (!(new File(args.get(0))).exists()) {
             throw new IllegalArgumentException("File doesn't exist");
         }
-        try {
-            unzip(args.get(0));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            throw new IllegalArgumentException("Something wrong");
-        }
+        unzip(args.get(0));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getDescription() {
+        return "Unzipping a file/directory.\nSYNOPSIS\nunzip[source name] - unzip archive\n";
     }
 
     private void unzip(final String zipDir) throws IOException {
@@ -40,7 +53,9 @@ public class UnzipCommand implements Command {
             if (entryName.endsWith("/")) {
                 createFolder(entryName);
                 continue;
-            } else checkFolder(entryName);
+            } else {
+                checkFolder(entryName);
+            }
             InputStream fis = zipFile.getInputStream(entry);
             FileOutputStream fos = new FileOutputStream(entryName);
             byte[] buffer = new byte[fis.available()];
@@ -55,13 +70,15 @@ public class UnzipCommand implements Command {
 
     private void createDir(final String dir) {
         File file = new File(dir);
-        if (!file.exists())
+        if (!file.exists()) {
             file.mkdirs();
+        }
     }
 
     private void createFolder(final String dirName) {
-        if (dirName.endsWith("/"))
+        if (dirName.endsWith("/")) {
             createDir(dirName.substring(0, dirName.length() - 1));
+        }
     }
 
     private void checkFolder(final String file_path) {

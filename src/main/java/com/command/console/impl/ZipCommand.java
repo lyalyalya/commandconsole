@@ -1,3 +1,7 @@
+package com.command.console.impl;
+
+import com.command.console.AbstractCommand;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,23 +11,33 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ZipCommand implements Command {
+/**
+ * Command for zipping to archive.
+ */
+public class ZipCommand extends AbstractCommand {
 
+    /**
+     * @inheritDoc
+     */
+    @Override
+    protected boolean isInvalidArgs(List<String> args) {
+        return args.size() != 2;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    protected void executeCommand(List<String> args) throws IOException {
+        zip(args.get(0), args.get(1));
+    }
+
+    /**
+     * @inheritDoc
+     */
     @Override
     public String getDescription() {
         return "Zipping a file/directory.\nSYNOPSIS\nzip[source folder name] [archive name] - create archive in current directory\n";
-    }
-
-    @Override
-    public void execute(List<String> args) {
-        if (args.size() != 2) {
-            throw new IllegalArgumentException("Incorrect arguments\n" + getDescription());
-        }
-        try {
-            zip(args.get(0), args.get(1));
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Something wrong");
-        }
     }
 
     private void zip(String source, String zipFile) throws IOException {

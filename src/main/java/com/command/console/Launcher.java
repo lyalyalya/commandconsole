@@ -1,11 +1,23 @@
+package com.command.console;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * com.command.console.Command console launcher.
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Launcher {
 
+    /**
+     * Runs program.
+     */
     public static void main(String[] args) {
         CommandProcessor cp = CommandProcessor.INSTANCE;
         System.out.println("Nice to see you!");

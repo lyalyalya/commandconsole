@@ -3,7 +3,7 @@ package com.command.console.util;
 /**
  * Helper common for running shell commands depending on OS.
  */
-public interface SystemExecHelper {
+public interface SystemExecHelpStrategy {
 
    /**
     * Returns OS separator.

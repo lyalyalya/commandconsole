@@ -1,7 +1,7 @@
 package com.command.console.impl;
 
-import com.command.console.util.SystemExecHelper;
-import com.command.console.util.SystemExecHelperFactory;
+import com.command.console.util.SystemExecHelpStrategy;
+import com.command.console.util.SystemExecHelpFactory;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CreateFileCommandTest {
 
-    private static final SystemExecHelper OS_EXEC_HELPER = SystemExecHelperFactory.getOsExecHelper();
+    private static final SystemExecHelpStrategy OS_EXEC_HELPER = SystemExecHelpFactory.getOsExecHelpStrategy();
     private static final String TEST_FILE_NAME = "test_file";
     private static final String EXPECTED_ERROR_MSG = "Illegal arguments\n" +
             "Creating a new file\n" +

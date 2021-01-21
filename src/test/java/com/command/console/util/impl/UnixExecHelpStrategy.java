@@ -1,27 +1,27 @@
 package com.command.console.util.impl;
 
-import com.command.console.util.SystemExecHelper;
+import com.command.console.util.SystemExecHelpStrategy;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class WindowsExecHelper implements SystemExecHelper {
+public class UnixExecHelpStrategy implements SystemExecHelpStrategy {
 
-    public static final WindowsExecHelper INSTANCE = new WindowsExecHelper();
+    public static final UnixExecHelpStrategy INSTANCE = new UnixExecHelpStrategy();
 
     @Override
     public String removeFile() {
-        return "DEL ";
+        return "rm -rf ";
     }
 
     @Override
     public String removeDir() {
-        return "RMDIR ";
+        return "rm -rf ";
     }
 
     @Override
     public String createFile() {
-        return "type NUL > ";
+        return "touch ";
     }
 
 }

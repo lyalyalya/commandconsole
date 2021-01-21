@@ -25,7 +25,7 @@ public class CreateFileCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) throws IOException {
+    protected void execute(List<String> args) throws IOException {
         Path newPath = Paths.get(args.get(0));
         if (!Files.exists(newPath)) {
             Files.createFile(newPath);

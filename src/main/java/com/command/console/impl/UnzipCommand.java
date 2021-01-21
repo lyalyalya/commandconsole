@@ -29,7 +29,7 @@ public class UnzipCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) throws IOException {
+    protected void execute(List<String> args) throws IOException {
         if (!(new File(args.get(0))).exists()) {
             throw new IllegalArgumentException("File doesn't exist");
         }

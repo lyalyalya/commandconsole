@@ -52,7 +52,7 @@ public class DeleteCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) {
+    protected void execute(List<String> args) {
         Path dir = Paths.get(args.get(0));
         try {
             if (!Files.exists(dir)) {

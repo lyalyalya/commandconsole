@@ -25,7 +25,7 @@ public class CreateDirectoryCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) throws IOException {
+    protected void execute(List<String> args) throws IOException {
         Path newDir = Paths.get(args.get(0));
         if (Files.exists(newDir)) {
             throw new IllegalArgumentException("Directory already exists");

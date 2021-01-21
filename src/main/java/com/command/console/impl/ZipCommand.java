@@ -28,7 +28,7 @@ public class ZipCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) throws IOException {
+    protected void execute(List<String> args) throws IOException {
         zip(args.get(0), args.get(1));
     }
 

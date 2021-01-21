@@ -37,7 +37,7 @@ class CreateDirectoryCommandTest {
 
     @Test
     public void shouldThrowExceptionIfEmptyArguments() {
-        Executable call = () -> createDirectoryCommand.execute(Collections.emptyList());
+        Executable call = () -> createDirectoryCommand.executeOrElseThrow(Collections.emptyList());
 
         IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, call);
         assertEquals(EXPECTED_ERROR_MSG, actualException.getMessage());
@@ -46,7 +46,7 @@ class CreateDirectoryCommandTest {
     @Test
     @SneakyThrows
     public void shouldSuccessfulCreateDirectory() {
-        createDirectoryCommand.execute(singletonList(TEST_DIR_NAME));
+        createDirectoryCommand.executeOrElseThrow(singletonList(TEST_DIR_NAME));
 
         Path actualPath = Paths.get(TEST_DIR_NAME);
         assertTrue(Files.exists(actualPath));

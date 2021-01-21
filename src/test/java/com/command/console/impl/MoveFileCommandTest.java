@@ -36,7 +36,7 @@ class MoveFileCommandTest {
 
     @Test
     public void shouldThrowExceptionIfEmptyArguments() {
-        Executable call = () -> moveFileCommand.execute(Collections.emptyList());
+        Executable call = () -> moveFileCommand.executeOrElseThrow(Collections.emptyList());
 
         IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, call);
         assertEquals(EXPECTED_ERROR_MSG, actualException.getMessage());
@@ -50,7 +50,7 @@ class MoveFileCommandTest {
 
         Thread.sleep(1000);
 
-        moveFileCommand.execute(Arrays.asList(TEST_FILE_NAME, ROOT_DIR));
+        moveFileCommand.executeOrElseThrow(Arrays.asList(TEST_FILE_NAME, ROOT_DIR));
 
         assertTrue(Files.exists(Paths.get("src", TEST_FILE_NAME)));
         assertFalse(Files.exists(Paths.get(TEST_FILE_NAME)));

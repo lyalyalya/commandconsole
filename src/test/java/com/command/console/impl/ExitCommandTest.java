@@ -25,7 +25,7 @@ class ExitCommandTest {
 
     @Test
     public void shouldThrowExceptionIfNonEmptyArguments() {
-        Executable call = () -> exitCommand.execute(Collections.singletonList("hi"));
+        Executable call = () -> exitCommand.executeOrElseThrow(Collections.singletonList("hi"));
 
         IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, call);
         assertEquals(EXPECTED_ERROR_MSG, actualException.getMessage());
@@ -34,7 +34,7 @@ class ExitCommandTest {
     @Test
     @SneakyThrows
     public void shouldSuccessfulExit() {
-        SystemLambda.catchSystemExit(() -> exitCommand.execute(Collections.emptyList()));
+        SystemLambda.catchSystemExit(() -> exitCommand.executeOrElseThrow(Collections.emptyList()));
     }
 
 }

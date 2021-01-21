@@ -35,7 +35,7 @@ class CopyFileCommandTest {
 
     @Test
     public void shouldThrowExceptionIfEmptyArguments() {
-        Executable call = () -> copyFileCommand.execute(Collections.emptyList());
+        Executable call = () -> copyFileCommand.executeOrElseThrow(Collections.emptyList());
 
         IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, call);
         assertEquals(EXPECTED_ERROR_MSG, actualException.getMessage());
@@ -43,7 +43,7 @@ class CopyFileCommandTest {
 
     @Test
     public void shouldThrowExceptionIfFileNotExists() {
-        Executable call = () -> copyFileCommand.execute(Arrays.asList("not_existing_file.txt", ROOT_DIR));
+        Executable call = () -> copyFileCommand.executeOrElseThrow(Arrays.asList("not_existing_file.txt", ROOT_DIR));
 
         IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, call);
         assertEquals(EXPECTED_ERROR_MSG, actualException.getMessage());
@@ -57,7 +57,7 @@ class CopyFileCommandTest {
 
         Thread.sleep(1000);
 
-        copyFileCommand.execute(Arrays.asList(TEST_FILE_NAME, "src"));
+        copyFileCommand.executeOrElseThrow(Arrays.asList(TEST_FILE_NAME, "src"));
 
         assertTrue(Files.exists(Paths.get("src", TEST_FILE_NAME)));
 

@@ -20,5 +20,5 @@ public interface Command {
      * @param args arguments for command
      * @throws IllegalArgumentException if unsuccessful operation
      */
-    void execute(List<String> args);
+    void executeOrElseThrow(List<String> args);
 }

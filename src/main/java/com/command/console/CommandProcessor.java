@@ -49,7 +49,7 @@ public class CommandProcessor {
      */
     public void executeCommand(List<String> args) {
         if (!args.isEmpty() && commands.containsKey(args.get(0).toUpperCase())) {
-            commands.get(args.get(0).toUpperCase()).execute(args.subList(1, args.size()));
+            commands.get(args.get(0).toUpperCase()).executeOrElseThrow(args.subList(1, args.size()));
         } else {
             throw new IllegalArgumentException("com.command.console.Command not found");
         }

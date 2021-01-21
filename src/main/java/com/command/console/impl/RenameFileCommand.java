@@ -25,7 +25,7 @@ public class RenameFileCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) throws IOException {
+    protected void execute(List<String> args) throws IOException {
         Path source = Paths.get(args.get(0));
         if (!Files.exists(source)) {
             throw new IllegalArgumentException("File doesn't exist");

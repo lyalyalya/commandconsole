@@ -14,12 +14,12 @@ public abstract class AbstractCommand implements Command {
      * @inheritDoc
      */
     @Override
-    public void execute(List<String> args) {
+    public void executeOrElseThrow(List<String> args) {
         if (isNull(args) || isInvalidArgs(args)) {
             throw new IllegalArgumentException("Illegal arguments\n" + getDescription());
         }
         try {
-            executeCommand(args);
+            execute(args);
         } catch (IOException e) {
             throw new IllegalArgumentException("Unsuccessful\n\n" + getDescription());
         }
@@ -37,6 +37,7 @@ public abstract class AbstractCommand implements Command {
      * Executes command.
      *
      * @param args given arguments
+     * @throws IllegalArgumentException if something went wrong
      */
-    protected abstract void executeCommand(List<String> args) throws IOException;
+    protected abstract void execute(List<String> args) throws IOException;
 }

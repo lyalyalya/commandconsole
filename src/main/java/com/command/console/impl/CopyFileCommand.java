@@ -28,7 +28,7 @@ public class CopyFileCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) throws IOException {
+    protected void execute(List<String> args) throws IOException {
         final Path source = Paths.get(args.get(0));
         final Path target = Paths.get(args.get(1), args.get(0));
         Files.walkFileTree(source, new SimpleFileVisitor<Path>() {

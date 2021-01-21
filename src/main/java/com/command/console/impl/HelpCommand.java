@@ -24,7 +24,7 @@ public class HelpCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) {
+    protected void execute(List<String> args) {
         Map<String, Command> commands = CommandProcessor.INSTANCE.getCommands();
         if (args.isEmpty()) {
             for (Map.Entry<String, Command> pair : commands.entrySet()) {

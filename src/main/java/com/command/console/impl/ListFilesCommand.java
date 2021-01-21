@@ -28,7 +28,7 @@ public class ListFilesCommand extends AbstractCommand {
      * @inheritDoc
      */
     @Override
-    protected void executeCommand(List<String> args) throws IOException {
+    protected void execute(List<String> args) throws IOException {
         String path;
         int countFiles = 0;
         int countDirectories = 0;

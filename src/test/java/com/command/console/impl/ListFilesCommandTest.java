@@ -19,7 +19,7 @@ class ListFilesCommandTest {
 
     @Test
     public void shouldSuccessfulListFiles() {
-        Executable call = () -> listFilesCommand.execute(Collections.emptyList());
+        Executable call = () -> listFilesCommand.executeOrElseThrow(Collections.emptyList());
 
         assertDoesNotThrow(call);
     }

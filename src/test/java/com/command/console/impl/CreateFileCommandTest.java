@@ -36,7 +36,7 @@ class CreateFileCommandTest {
 
     @Test
     public void shouldThrowExceptionIfEmptyArguments() {
-        Executable call = () -> createFileCommand.execute(Collections.emptyList());
+        Executable call = () -> createFileCommand.executeOrElseThrow(Collections.emptyList());
 
         IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, call);
         assertEquals(EXPECTED_ERROR_MSG, actualException.getMessage());
@@ -45,7 +45,7 @@ class CreateFileCommandTest {
     @Test
     @SneakyThrows
     public void shouldSuccessfulCreateFile() {
-        createFileCommand.execute(singletonList(TEST_FILE_NAME));
+        createFileCommand.executeOrElseThrow(singletonList(TEST_FILE_NAME));
 
         Path actualPath = Paths.get(TEST_FILE_NAME);
         assertTrue(Files.exists(actualPath));
